@@ -5,11 +5,14 @@
             <div class="directive" ng-controller="sumCtrl"> 
               <accordion >
 
-                <sumExpander class='expander' ng-repeat='expander in expanders'>
+                <test class='expander' ng-repeat='expander in expanders' expander-title="expander.title">
                   {{expander.text}}
-                </subExpander>
+                </test>
 
               </accordion>
+              <!-- <test class='expander' ng-repeat='expander in expanders' expander-title="expander.title">
+                  {{expander.text}}
+                </test> -->
 
 
             </div>
@@ -23,4 +26,4 @@
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
        
        ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');</script> <script src="scripts/vendor.cd318db6.js"></script> <script src="scripts/scripts.ff44b1ce.js"></script> </body> </html>
+       ga('send', 'pageview');</script> <script src="scripts/vendor.cd318db6.js"></script> <script src="scripts/scripts.903c8b3a.js"></script> </body> </html>

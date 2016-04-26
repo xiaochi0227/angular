@@ -43,54 +43,52 @@
   $scope.text = 'body内容'
 
 })
+
  .directive('accordion',function(){
   return {
-    restrict: 'AE',
+    restrict: 'E',
     replace: true,
     transclude: true,
-    template: '<div class="accordion"></div>',
+    scope: {},
+    template: '<div class="accordion" ng-transclude></div>'  ,
     controller: function(){
       var expanders = []
-      this.open = function(selected){
-        angular.each(expanders,function(current){
-          if(selected!=current){
-            current.showMe = false
+      this.gotOpened = function(selectedExpander){
+        angular.forEach(expanders,function(expander){
+          if(selectedExpander!=expander){
+            expander.showMe = false
           }
-
         })
       }
-      this.add = function(current){
-        expanders.push(current)
+      this.addExpander = function(expander){
+        expanders.push(expander)
       }
     }
+
   }
 
 })
- .directive('test',function(){
+ .directive('myDirective',function(){
   return {
-    restrict: 'EA',
-    replace: false,
+    restrict: 'E',
+    replace: true,
     transclude: true,
     require: '^?accordion',
-    scope : {
-            title : '=expanderTitle'
-        },
     template: '<div>'+
-    '<div class="title" ng-click="toggle()" >{{title}}</div>'+
-    '<div class="body" ng-show="showMe" ng-transclude></div>'+
-    '</div>',
-    link: function(scope,element,atts,accordionController){
-      scope.showMe = false;
-      accordionController.add(scope)
-      scope.toggle = function(){
-        scope.showMe = !scope.showMe
-        accordionController.get(scope)
-
-      }
-
+              '<div class="title" ng-click="toggle()">{{expander.title}}</div>'+
+              '<div class="body" ng-show="showMe" ng-transclude></div>'+
+              '</div>',
+    link: function(scope,element,attrs,accordionController){
+        scope.showMe = false;
+        accordionController.addExpander(scope)
+        scope.toggle = function(){
+          scope.showMe = !scope.showMe
+          accordionController.gotOpened(scope)
+        }
     }
   }
-})
+ })
+
  .controller('sumCtrl',function($scope){
   $scope.expanders = [{
         title : 'Click me to expand',
