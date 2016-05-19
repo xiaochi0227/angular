@@ -51,17 +51,25 @@
               </my-directive>
  -->              
 
-
             </div>
-
-
-
 
           </div>
           
         </script>
-
-
+        <script type="text/ng-template" id="competence.html">
+          <div class="container">
+            <h1>Competence</h1>
+            <div>
+              Test Scope: {{name}}
+              <label for="name">页面name: </label>
+              <input type="text" ng-model="name"></input>
+              <label for="name">页面age: </label>
+              <input type="text" ng-model="age"></input>
+            </div>
+            <table-directive name="{{name}}" age="age" change-name="changeName()"></table-directive>
+          </div>
+        </script>
+        
 
       </div>
       

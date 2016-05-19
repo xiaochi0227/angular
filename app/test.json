@@ -1,0 +1,14 @@
+{
+    "result": [
+        {
+            "name": "xiaochi",
+            "sex": "女",
+            "type": "singing"
+        },
+        {
+            "name": "xiaoming",
+            "sex": "女",
+            "type": "making friends"
+        }
+    ]
+}

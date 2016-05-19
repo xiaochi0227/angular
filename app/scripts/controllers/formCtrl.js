@@ -61,4 +61,9 @@ angular.module('myApp').controller('myFormController',function($rootScope,$scope
 	$scope.id = $routeParams.id
 	$scope.user = storage.get()[$scope.id]
 
+<<<<<<< HEAD
 })
+=======
+})
+
+>>>>>>> master
