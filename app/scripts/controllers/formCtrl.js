@@ -62,3 +62,4 @@ angular.module('myApp').controller('myFormController',function($rootScope,$scope
 	$scope.user = storage.get()[$scope.id]
 
 })
+

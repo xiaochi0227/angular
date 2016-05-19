@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
- angular.module('myApp',['ngRoute'])
+ angular.module('myApp',['ngRoute','ngResource'])
 
  .directive('hello',function(){
   return {
@@ -100,8 +100,65 @@
         title : 'Test',
         text : 'test'
     }];
-})
+}) 
 
+.directive('tableDirective',['$compile',function($compile){
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      name:"@name",
+      age:'=',
+      changeName: '&changeName'
+    },
+    templateUrl: 'views/deTable.html',
+    link: function(scope,iElement,iAttrs){
+      console.log('link')
+    }
+    // ,
+    // template: function(iElement,iAttrs){
+    //   return '<div>test</div>'
+    // },
+    // compile: function(iElement,iAttrs){
+    //   iElement.append('<div>xiaochi</div>')
+    //   return function(scope,iElement,iAttrs){
+    //     console.log('compile return link')
+    //     var template="<div>name:{{name}}</div>"
+    //     iElement.append($compile(template)(scope))
+    //   }
+    // }
+  }
+ }])
+
+
+.controller('competenceCtrl',['$scope','competenceService','$http','$timeout',function($scope,competenceService,$http,$timeout){
+   
+   $scope.name="test scope"
+   $scope.age="21"
+   $scope.changeName = function(){
+    $scope.name='xiaochi'
+   }
+  var p = $timeout(function(){console.log('haha')}, 500);
+  p.then(function(){console.log('x')});
+
+   var result = competenceService('../../test.json')
+   result.get().$promise.then(function(d){
+      $scope.result = d.result
+   })
+
+   // $http({
+   //    method:'GET',
+   //    url:'/test.json',
+   //    dataType: 'json'
+   //  }).success(function(res){
+   //    console.log(res)
+   //  }).error(function(res){
+   //    console.log('error')
+   //    console.log(res)
+
+   //  })
+
+}])
 
 
  .config(['$routeProvider', function($routeProvider){
@@ -112,6 +169,10 @@
   })
   .when('/test', {
     templateUrl : 'test-template.html'
+  })
+  .when('/competence', {
+    controller: 'competenceCtrl',
+    templateUrl : 'competence.html'
   })
   .when('/detail/:id', {
     controller : 'detailCtrl',
