@@ -1,0 +1,21 @@
+<div class="table">
+  <div class="test-input">
+    <input type="text" ng-model="name"></input>
+    <input type="text" ng-model="age"></input>
+    <button ng-click="changeName()">click to change name</button>
+  </div>
+  <table>
+    <thead>
+      <th style="width:100px;">姓名</th>
+      <th style="width:100px;">性别</th>
+      <th style="width:100px;">爱好</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in result">
+        <td>{{item.name}}</td>
+        <td>{{item.sex}}</td>
+        <td>{{item.type}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
